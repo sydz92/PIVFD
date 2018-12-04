@@ -1,12 +1,10 @@
-# Movimiento y navegación
+# Percepción del entorno
 
-![Imagen 3](img3.png) 
+![Imagen 2](img2.png)
 
- Los drones utilizados ofrecen un SDK, que permite además de obtener información de los sensores controlar su movimiento. Para navegar el entorno, calcular la posición actual e identificar puntos de interés se emplean marcadores. 
+El tipo de amenaza en el que nos se enfocó el proyecto en identificar fueron las intrusiones humanas. El objetivo fue detectar intrusos y perseguirlos para mantenerlos monitoreados. La solución se basó en la utilización de las imágenes tomadas por la cámara del dron para detectar personas. La detección de intrusos consta de tres tareas: detección, seguimiento y persecución. 
 
- Se utilizan dos tipo de marcadores, los marcadores de navegación y los marcadores de aterrizaje. Los marcadores de aterrizaje se ubican en los vertices de la platafroma de carga. Mediante dichos marcadores e información de la altura es posible estimar la pocición relativa de el drone con respecto a dicha plataforma. Esto permite poder alinear el drone a la plataforma y aterrizar sobre ella, para poder restablecer la  bateria del drone de forma autonoma.
-
- Los marcadores de navegación poseen un patrón único que los identifica y permite determinar su orientación. Además estos son ubicados en una ubiación absoluta conocida, por lo que mediante la estimación de la posición relativa y orientación con respecto al drone, se puede estimar la posición abloluta del drone. Esto permite definir patrones de vigilancia en base a dichos marcadores, reconocer sitios de interes y navegar hacia ellos.
+La primera tarea conta en utilizar un algorítmo de procesamiento de imagen expecializado en la detección del la figura humana para detecctar a los intrusos. Una vez detectado un intruso se pasa a la segunda etapa donde se utiliza un algoritmo de seguimiento para seguir al intruso en la imagen. Debido a que la dentección es constosa, esta combinación permite obtener mejores resultados con menor capacidad de computo. En paralelo a la taréa de seguimiento se realiza la persecución. Durante la persecución utiliza la posición del intruso en la cámara y la altura de vuelo entre otros datos para estimar su posición. Luego de conocida la posción se generan los comandos para poder perseguirlo.
 
 
 

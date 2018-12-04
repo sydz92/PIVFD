@@ -1,9 +1,10 @@
-# Percepción del entorno
+# Navegación y aterrizaje
 
-![Imagen 2](img2.png)
+![Imagen 3](img3.png) 
 
-El proyecto emplea drones [Bebop 2 de Parrot](https://www.parrot.com/es/drones/parrot-bebop-2#parrot-bebop-2-). Cada drone posee una camara frontal de gran angular de la que obtiene información del entorno. Ademas cuenta con sensores que puermite otener la posición GPS y la altitud con respecto al suelo. Esta informaición es utilizada para la navegación, visitar los sitios de interez y perseguir intrusos. 
+El enfoque utilizado para la navegación fue la utilización de marcadores. Los marcadores son elementos fácilmente reconocibles por el dron mediante el uso de la cámara abordo. Los marcadores utilizados (ArUco) constan de un grilla binaria nxn que se codifican a un número. Los marcadores son ubicados en una posición conocida y son utilizados para el cálculo de la posición de los drones dentro del predio. 
 
-La imágenes obtenidas por la cámara son introducidas en algorimos de procesamiento de imágenes y vision por computadora para su anásis. El resultado de dichos algorimos permiten tener una gran percepción de los elementos y caracterísitcas del entorno. Estos resultados son utilizadas en conjunto con la información de los sensores, para estimar la posición de estos elementos y poder tomar medias sobre dicho entorno.
+Cuando un marcador es visualizado por un dron este calcula su posición y rotación utilizando la perspectiva y escala del marcador en la imagen. Luego se toma el promedio de todas las posiciones estimadas y se calcula la posición del dron dentro del predio. Este enfoque requiere que se acondicione previamente el espacio, requieren cuidados adicionales y están sujeto oclusiones. Sin embargo los algoritmos empleados son computacionalmente mucho más eficientes y permiten un cálculo de posición más preciso. 
 
-Para detectar instusos se utiliza un detector de personas, programado en base a liberias de OpenCV. Estos algorimos detectan en las imagenes obtenidas por el drone a potenciales intrusos. Una vez detectados mediante calculos trigonometricos que utilizan datos como el campo de vision de la cámara, el ángulo de con respecto al suelo, la altura del drone, entre otros, se utiliza trigonometría para calcular la posición relativa del instruso. Esto permite, seguir al intruso en la zona de vigililancia y notificar a los demás drones para monitorear sus acciónes.
+Para mantener la flotilla operando en todo momento de forma autónoma se requiere que los drones sean capaces de recargar su batería de forma autonoma. Para esto se utilizó la una plataforma de carga especialmente deseñada que permite que drones se cargen solo con aterrizar sobre ella. Nuestro trabajo se enfocó en diseñar un algoritmo que sea capáz de localizar la plataforma de carga y aterrizar sobre ella. Este algorimo utiliza marcadores similares a los de navegación, que son ubicados en los exremos de la plataforma. Estos marcadores son utilizados para calcular el centro de la plataforma y alinearse perfectamente sobre ella antes de aterrizar.
+

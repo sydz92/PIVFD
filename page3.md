@@ -1,12 +1,10 @@
-# Cooperación y comunicación
+# Coodrinación de la flotilla
 
 ![Imagen 4](img4.png) 
 
-A pesar de que cada drone debe ser capas de ser autonomo, toda la flotilla de drones deben formar una unidad de inteligencia. Los quadricopteros deben establecer una red de comuniación que permita intercambiar a alto nivel, la visión parcial que cada uno percibe del entorno y su estado. 
+A pesar de que cada dron debe ser capas de ser autonomo, toda la flotilla de drones deben trabajar De manera. El mecanismo de coordinación de la flotlla se basa en dos puntos claves: la comunicación y la toma de decicónes. 
 
-Toda esta información parcial construye una visión más completa del entorno y permite establecer objetivos de alto nivel. El trabajo en equipo permite mantener drones en vuelo mientras otros recargan su bateria, optimizar las rutas de patrullaje reduciendo los puntos ciegos y mejorar el seguimiento de posibles amenazas.
+La comunicación pemite distribuir el estado de cada dron al resto de drones de la flotilla. Esta información incluye la tarea actual, la posición, el nivel de batería, la presencia de intrusos y su ubicación, entre otras cosas. Toda esta información es resumida en un mensaje y distribuida mediante broadcast. Para pemitir la interconexión de los drones se utiliza una red inalámbrica. Esta red permite utilizar tanto una arquitectura centralizada utilizando puntos de acceso externos o utilizar la señal generada por los drone para generar una red de maya (mesh). 
 
-Para enviar información entre los drones, se utilizan sockets TCP que forman una red mesh a través de WIFI. De esta forma se simplifica el envio de mensajes y se asegura que estos lleguen a destino. Cada drone es responsable de notificar a los demás de su precencia y establecer conexiónes, además de notificar su estado. Este estado incluye información de su posición, estado de vuelo, precencia de intrusos, etc.
-
-El modelo de inteligencia que se busca obtener, es de tipo destribuido. Es decir que no exista un componente maestro que tome las deciciónes. Cada drone, con la información de su estado y el de los demás drones debe determinar si debe seguir su ruta de vuelo, ir a la plataforma de carga, cubrir una nueva ruta de vuelo, perseguir o monitorear un intruso, etc. Siempre buscando optimizar la vigilancia de la zona objetivo en colaboración con los demás drones.
+La toma de decisiones permite utilizar toda la información recolectada directamente por el dron y la información recolectada mediante la comunicación con el resto de la ﬂotilla para tomar decisiónes. Estas decisiones permiten a la ﬂotilla trabajar como una unidad, colaborando para dar seguimiento a los intrusos y coordinar el uso de la plataforma de carga. Este mecanismo mecanismo se basa en dos componentes basicos: la planificación fuera de linea que permite definir las rutas de patrllaje y una maquina de estados en ejecutada en linea. Esta máquina de estados es la que determina qué tarea debe realizar el dron en cada momento y las transiciones son provocadas por eventos percibidos por el propio dron o por el resto de drones de la flotilla.
 
