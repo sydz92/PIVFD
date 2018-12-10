@@ -2,4 +2,6 @@
 * [Navegación y aterrzaje](page1.md)
 * [Detección de intrusos](page2.md)
 * [Coodrinación de la flotilla](page3.md)
-* [Videos](videos.md)
+* [Video](videos.md)
+* [Informe](proy-grado-bruno-santiago.pdf)
+* [Código](https://github.com/bgarate/proy-grado)
